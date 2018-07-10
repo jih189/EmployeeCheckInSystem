@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CheckinSystem.Models.dto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+    <p>
+        Searching Name: @Html.TextBox("SearchString")
+
+        <br />
+        <input type="button" value="Filter" id="search" />
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOfDay)
+            </th>
+            <th></th>
+        </tr>
+        <tbody id="context"></tbody>
+    </table>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        load();
+        $("#search").click(function () {
+            load();
+        });
+    });
+
+    function load() {
+        $.ajax({
+            url: "/Event/IndexDatalist?searchString=" + $("#SearchString").val(),
+            type: "GET",
+            success: function (data) {
+                $("#context").html(data)
+            },
+            error: function () {
+                $("#context").html("<p>fail to get the data</p>");
+            }
+        });
+    }
+</script>

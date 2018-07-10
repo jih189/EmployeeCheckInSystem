@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CheckinSystem.Models.dto>
+@{
+    ViewBag.Title = "IndexDatalist";
+}
+
+@{Layout = null;}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date.Year)
+
+            @Html.DisplayFor(modelItem => item.Date.Month)
+
+            @Html.DisplayFor(modelItem => item.Date.Day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeOfDay)
+        </td>
+    </tr>
+}
+
